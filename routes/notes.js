@@ -8,24 +8,23 @@ notes.get('/', (req, res) => {
 });
 
 // POST Route for a new note
-// notes.post('/', (req, res) => {
-//   console.log(req.body);
+notes.post('/', (req, res) => {
+  console.log(req.body);
 
-//   const { username, topic, tip } = req.body;
+  const {title, text } = req.body;
 
-//   if (req.body) {
-//     const newTip = {
-//       username,
-//       tip,
-//       topic,
-//       tip_id: uuidv4(),
-//     };
+  if (req.body) {
+    const newNote = {
+      title,
+      text,
+      note_id: uuidv4(),
+    };
 
-//     readAndAppend(newTip, './db/tips.json');
-//     res.json(`Tip added successfully 🚀`);
-//   } else {
-//     res.error('Error in adding tip');
-//   }
-// });
+    readAndAppend(newNote, './db/db.json');
+    res.json(`Note added successfully 🚀`);
+  } else {
+    res.error('Error in adding note');
+  }
+});
 
 module.exports = notes;
